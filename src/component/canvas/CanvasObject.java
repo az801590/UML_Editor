@@ -7,6 +7,8 @@ import javax.swing.JComponent;
 import component.graph.Graph;
 
 public class CanvasObject extends JComponent {
+	private static final long serialVersionUID = 1L;
+	
 	protected Graph graph;
 
 	@Override

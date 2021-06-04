@@ -16,7 +16,7 @@ public class ButtonAction extends MouseAdapter {
 		this.canvas = canvas;
 	}
 
-	public void clearCanvasSelect() {
+	private void clearCanvasSelect() {
 		if (canvas.getSelected() != null) {
 			canvas.getSelected().showPorts(false);
 		}

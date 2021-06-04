@@ -1,13 +1,13 @@
 package action.canvasAction;
 
 import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import action.basicObjectAction.BasicObjectAction;
 import component.canvas.BasicObject;
 import component.canvas.Canvas;
-import component.canvas.Group;
 import component.canvas.GroupObject;
 import component.sidebar.Sidebar;
 
@@ -16,8 +16,7 @@ public class CanvasAction extends MouseAdapter {
 	private Sidebar sidebar;
 
 	private BasicObjectAction basicObjAction;
-	private int basicObjLength = 60;
-	private int selectFromPosition[] = new int[2];
+	private Point selectFromPoint;
 
 	public void init(Canvas canvas, Sidebar sidebar) {
 		this.canvas = canvas;
@@ -39,8 +38,7 @@ public class CanvasAction extends MouseAdapter {
 
 		if (index == 0) {
 			clearCanvasSelect();
-			selectFromPosition[0] = e.getX();
-			selectFromPosition[1] = e.getY();
+			selectFromPoint = e.getPoint();
 		}
 	}
 
@@ -52,10 +50,10 @@ public class CanvasAction extends MouseAdapter {
 			// positionRange[1] for y, ascending order
 			int positionRange[][] = new int[2][2];
 
-			positionRange[0] = (selectFromPosition[0] > e.getX() ? new int[] { e.getX(), selectFromPosition[0] }
-					: new int[] { selectFromPosition[0], e.getX() });
-			positionRange[1] = (selectFromPosition[1] > e.getY() ? new int[] { e.getY(), selectFromPosition[1] }
-					: new int[] { selectFromPosition[1], e.getY() });
+			positionRange[0] = (selectFromPoint.x > e.getX() ? new int[] { e.getX(), selectFromPoint.x }
+					: new int[] { selectFromPoint.x, e.getX() });
+			positionRange[1] = (selectFromPoint.y > e.getY() ? new int[] { e.getY(), selectFromPoint.y }
+					: new int[] { selectFromPoint.y, e.getY() });
 
 			Component c[] = canvas.getComponents();
 			GroupObject tmpGroup = new GroupObject();
@@ -74,10 +72,10 @@ public class CanvasAction extends MouseAdapter {
 				canvas.setSelected(tmpGroup);
 			}
 		} else if (index == 4 || index == 5) {
-			BasicObject obj = new BasicObject();
-			obj.setBounds(e.getX(), e.getY(), basicObjLength, basicObjLength);
+			BasicObject obj = new BasicObject(e.getPoint());
 			obj.setGraph(index);
 			obj.addMouseListener(basicObjAction);
+			obj.addMouseMotionListener(basicObjAction);
 			canvas.add(obj);
 			canvas.moveToFront(obj);
 		}

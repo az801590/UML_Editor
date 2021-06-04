@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import action.sidebarAction.ButtonAction;
@@ -13,9 +12,11 @@ import component.canvas.Canvas;
 import component.graph.*;
 
 public class Sidebar extends JPanel {
+	private static final long serialVersionUID = 1L;
+
 	private Button selectButton;
 	private Button buttons[] = new Button[6];
-	
+
 	Graph sideGraph[] = { new SelectGraph(new int[] { 40, 40 }, new int[] { 10, 10 }),
 			new AssociationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
 			new GenerationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
@@ -27,10 +28,10 @@ public class Sidebar extends JPanel {
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
 	}
-	
+
 	public void init(Canvas canvas) {
-		ButtonAction buttonAction =  new ButtonAction(this, canvas);
-		
+		ButtonAction buttonAction = new ButtonAction(this, canvas);
+
 		GridBagConstraints gbc;
 		for (int i = 0; i < buttons.length; i++) {
 			gbc = new GridBagConstraints();
@@ -40,7 +41,7 @@ public class Sidebar extends JPanel {
 			gbc.gridheight = 1;
 			gbc.weightx = 1;
 			gbc.weighty = 1;
-			
+
 			buttons[i] = new Button(sideGraph[i]);
 			buttons[i].setPreferredSize(new Dimension(50, 50));
 			buttons[i].addMouseListener(buttonAction);

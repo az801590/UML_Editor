@@ -8,7 +8,8 @@ import action.canvasAction.CanvasAction;
 import component.sidebar.Sidebar;
 
 public class Canvas extends JLayeredPane {
-	private Sidebar sidebar;
+	private static final long serialVersionUID = 1L;
+	
 	private Group selected;
 
 	public Canvas() {

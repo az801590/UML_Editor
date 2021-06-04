@@ -1,5 +1,6 @@
 package action.basicObjectAction;
 
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,7 +15,7 @@ public class BasicObjectAction extends MouseAdapter {
 	private Canvas canvas;
 
 	private BasicObject from, to;
-	int mouseFromPosition[] = new int[2];
+	private Point mouseFrom = new Point();
 
 	public BasicObjectAction(Canvas canvas, Sidebar sidebar) {
 		this.canvas = canvas;
@@ -34,13 +35,11 @@ public class BasicObjectAction extends MouseAdapter {
 				}
 			} else {
 				// move
-				mouseFromPosition[0] = e.getX();
-				mouseFromPosition[1] = e.getY();
+				mouseFrom.setLocation(e.getPoint());
 			}
 		} else if (index == 1 || index == 2 || index == 3) {
 			from = (BasicObject) e.getComponent();
-			mouseFromPosition[0] = e.getX();
-			mouseFromPosition[1] = e.getY();
+			mouseFrom.setLocation(e.getPoint());
 			from.showPorts(true);
 		}
 	}
@@ -56,15 +55,15 @@ public class BasicObjectAction extends MouseAdapter {
 				tmp.showPorts(true);
 				canvas.setSelected(tmp);
 			} else {
-				// move
-				tmp.moveObject(new int[] { e.getX() - mouseFromPosition[0], e.getY() - mouseFromPosition[1] });
+				// move without motion
+//				tmp.moveObject(new int[] { e.getX() - mouseFromPoint.x, e.getY() - mouseFromPoint.y });
 			}
 		} else if (index == 1 || index == 2 || index == 3) {
 			if (from != null) {
 				if (to != null) {
 					if (from != to) {
 						ConnectionObject connect = new ConnectionObject(from, to);
-						connect.init(mouseFromPosition, new int[] { e.getX(), e.getY() }, index);
+						connect.init(mouseFrom, e.getPoint(), index);
 						canvas.add(connect);
 						canvas.moveToFront(connect);
 
@@ -85,8 +84,9 @@ public class BasicObjectAction extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		int index = sidebar.getSelectIndex();
+		if (index == 0) {
 
-		if ((index == 1 || index == 2 || index == 3) && from != null) {
+		} else if ((index == 1 || index == 2 || index == 3) && from != null) {
 			to = (BasicObject) e.getComponent();
 			to.showPorts(true);
 		}
@@ -95,10 +95,20 @@ public class BasicObjectAction extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		int index = sidebar.getSelectIndex();
+		if (index == 0) {
 
-		if ((index == 1 || index == 2 || index == 3) && from != null && to != null) {
+		} else if ((index == 1 || index == 2 || index == 3) && from != null && to != null) {
 			to.showPorts(false);
 			to = null;
+		}
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		if (sidebar.getSelectIndex() == 0) {
+			if (canvas.getSelected() != null) {
+				canvas.getSelected().moveObject(new int[] { e.getX() - mouseFrom.x, e.getY() - mouseFrom.y });
+			}
 		}
 	}
 }

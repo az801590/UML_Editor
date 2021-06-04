@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import component.graph.PortGraph;
 
 public class PortObject extends CanvasObject {
+	private static final long serialVersionUID = 1L;
+	
 	private ArrayList<ConnectionObject> connect = new ArrayList<ConnectionObject>();
 	private int portLength = 5;
 

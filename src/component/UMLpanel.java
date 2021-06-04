@@ -13,6 +13,8 @@ import component.menubar.Menubar;
 import component.sidebar.Sidebar;
 
 public class UMLpanel extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	Sidebar sidebar = new Sidebar();
 	Canvas canvas = new Canvas();
 	Menubar menubar = new Menubar(canvas, sidebar);

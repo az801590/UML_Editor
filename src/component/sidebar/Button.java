@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JComponent;
-import javax.swing.JLayeredPane;
 
-import action.sidebarAction.ButtonAction;
 import component.graph.Graph;
 
 public class Button extends JComponent {
+	private static final long serialVersionUID = 1L;
+	
 	private Graph graph;
 	private boolean selected = false;
 

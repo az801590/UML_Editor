@@ -10,6 +10,8 @@ import component.canvas.Canvas;
 import component.sidebar.Sidebar;
 
 public class Menubar extends JMenuBar {
+	private static final long serialVersionUID = 1L;
+	
 	private JMenu edit = new JMenu("edit");
 	private JMenuItem changeObjectName = new JMenuItem("Change Object Name");
 	private JMenuItem group = new JMenuItem("Group");

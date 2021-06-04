@@ -1,10 +1,14 @@
 package component.canvas;
 
+import java.awt.Point;
+
 import component.graph.AssociationGraph;
 import component.graph.CompositionGraph;
 import component.graph.GenerationGraph;
 
 public class ConnectionObject extends CanvasObject {
+	private static final long serialVersionUID = 1L;
+	
 	private BasicObject from;
 	private BasicObject to;
 
@@ -17,13 +21,13 @@ public class ConnectionObject extends CanvasObject {
 		this.from = from;
 		this.to = to;
 	}
-
-	public void init(int startPosition[], int endPosition[], int index) {
+	
+	public void init(Point startPoint, Point endPoint, int index) {
 		setObjBounds();
 
-		endPosition = setAxis2To(endPosition);
-		fromPort = from.getNearestPort(startPosition);
-		toPort = to.getNearestPort(endPosition);
+		endPoint = setAxis2To(endPoint);
+		fromPort = from.getNearestPort(startPoint);
+		toPort = to.getNearestPort(endPoint);
 
 		fromPort.addConnect(this);
 		toPort.addConnect(this);
@@ -41,12 +45,12 @@ public class ConnectionObject extends CanvasObject {
 						: (to.getHeight()));
 		setBounds(x, y, width, height);
 	}
+	
+	private Point setAxis2To(Point p) {
+		int x = Math.abs(Math.abs(p.x) - Math.abs(to.getX() - from.getX()));
+		int y = Math.abs(Math.abs(p.y) - Math.abs(to.getY() - from.getY()));
 
-	private int[] setAxis2To(int endPosition[]) {
-		int x = Math.abs(Math.abs(endPosition[0]) - Math.abs(to.getX() - from.getX()));
-		int y = Math.abs(Math.abs(endPosition[1]) - Math.abs(to.getY() - from.getY()));
-
-		return (new int[] { x, y });
+		return (new Point(x, y));
 	}
 
 	private void setGraph(int index) {
