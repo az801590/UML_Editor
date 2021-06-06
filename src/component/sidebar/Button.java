@@ -6,22 +6,29 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 
 import component.graph.Graph;
+import mode.Mode;
 
 public class Button extends JComponent {
 	private static final long serialVersionUID = 1L;
 	
 	private Graph graph;
 	private boolean selected = false;
+	private Mode mode;
 
 
-	Button(Graph graph) {
+	Button(Graph graph, Mode mode) {
 		super();
 		this.graph = graph;
+		this.mode = mode;
 	}
 
 	public void setSelected() {
 		selected = !selected;
 		repaint();
+	}
+	
+	public Mode getMode() {
+		return mode;
 	}
 
 	public boolean getStatus() {

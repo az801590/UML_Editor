@@ -11,18 +11,14 @@ import javax.swing.border.EmptyBorder;
 import component.canvas.Canvas;
 import component.menubar.Menubar;
 import component.sidebar.Sidebar;
+import mode.Mode;
 
 public class UMLpanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
-	Sidebar sidebar = new Sidebar();
-	Canvas canvas = new Canvas();
-	Menubar menubar = new Menubar(canvas, sidebar);
+	Menubar menubar = new Menubar();
 
 	public UMLpanel() {
-		canvas.init(sidebar);
-		sidebar.init(canvas);
-		menubar.init(canvas);
 		
 		// setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new GridBagLayout());
@@ -49,8 +45,8 @@ public class UMLpanel extends JPanel {
 		gbc.weighty = 1;
 		gbc.insets = new Insets(0, 20, 0, 0);
 		gbc.anchor = GridBagConstraints.WEST;
-		sidebar.setPreferredSize(new Dimension(70, 420));
-		add(sidebar, gbc);
+		Sidebar.getInstance().setPreferredSize(new Dimension(70, 420));
+		add(Sidebar.getInstance(), gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
@@ -59,7 +55,7 @@ public class UMLpanel extends JPanel {
 		gbc.gridheight = 12;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		canvas.setPreferredSize(new Dimension(420, 420));
-		add(canvas, gbc);
+		Canvas.getInstance().setPreferredSize(new Dimension(420, 420));
+		add(Canvas.getInstance(), gbc);
 	}
 }

@@ -53,4 +53,9 @@ public class GroupObject implements Group {
 	public void setGroupParent(GroupObject g) {
 		this.group = g;
 	}
+	
+	@Override
+	public boolean isGroupObject() {
+		return true;
+	}
 }

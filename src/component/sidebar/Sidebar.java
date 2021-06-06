@@ -7,32 +7,47 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-import action.sidebarAction.ButtonAction;
-import component.canvas.Canvas;
+import component.canvas.BasicObject;
+import component.canvas.ConnectionObject;
 import component.graph.*;
+import mode.LineMode;
+import mode.Mode;
+import mode.SelectMode;
+import mode.BasicObjMode;
 
 public class Sidebar extends JPanel {
 	private static final long serialVersionUID = 1L;
 
+	/**/
 	private Button selectButton;
 	private Button buttons[] = new Button[6];
 
-	Graph sideGraph[] = { new SelectGraph(new int[] { 40, 40 }, new int[] { 10, 10 }),
-			new AssociationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
-			new GenerationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
-			new CompositionGraph(new int[] { 40, 25 }, new int[] { 10, 25 }), new ClassGraph(10, 10, 30, 30),
-			new UseGraph(10, 15, 30, 20) };
-
-	public Sidebar() {
+	private Sidebar() {
 		super();
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
+		init();
 	}
 
-	public void init(Canvas canvas) {
-		ButtonAction buttonAction = new ButtonAction(this, canvas);
+	private static class Singleton {
+		private static final Sidebar INSTANCE = new Sidebar();
+	}
 
+	public static Sidebar getInstance() {
+		return Singleton.INSTANCE;
+	}
+
+	private void init() {
 		GridBagConstraints gbc;
+		Graph sideGraph[] = { new SelectGraph(new int[] { 40, 40 }, new int[] { 10, 10 }),
+				new AssociationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
+				new GenerationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
+				new CompositionGraph(new int[] { 40, 25 }, new int[] { 10, 25 }), new ClassGraph(10, 10, 30, 30),
+				new UseGraph(10, 15, 30, 20) };
+		Mode sideMode[] = { new SelectMode(), new LineMode(ConnectionObject.ASSOCIATION), new LineMode(ConnectionObject.GENERATION), new LineMode(ConnectionObject.COMPOSITION),
+				new BasicObjMode(BasicObject.CLASS), new BasicObjMode(BasicObject.USECASE) };
+		ButtonAction btnAction = new ButtonAction();
+
 		for (int i = 0; i < buttons.length; i++) {
 			gbc = new GridBagConstraints();
 			gbc.gridx = 0;
@@ -42,18 +57,19 @@ public class Sidebar extends JPanel {
 			gbc.weightx = 1;
 			gbc.weighty = 1;
 
-			buttons[i] = new Button(sideGraph[i]);
+			buttons[i] = new Button(sideGraph[i], sideMode[i]);
 			buttons[i].setPreferredSize(new Dimension(50, 50));
-			buttons[i].addMouseListener(buttonAction);
+			buttons[i].addMouseListener(btnAction);
 			add(buttons[i], gbc);
 		}
 	}
 
+	/**/
 	public Button getSelectButton() {
 		return selectButton;
 	}
 
-	public void setSelectButton(Button button) {
+	public void setSelected(Button button) {
 		selectButton = button;
 	}
 
@@ -70,4 +86,5 @@ public class Sidebar extends JPanel {
 		}
 		return i;
 	}
+	/**/
 }

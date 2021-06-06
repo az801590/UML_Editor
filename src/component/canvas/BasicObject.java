@@ -7,6 +7,9 @@ import component.graph.UseGraph;
 
 public class BasicObject extends CanvasObject implements Group {
 	private static final long serialVersionUID = 1L;
+	public static final int CLASS = 4;
+	public static final int USECASE = 5;
+	
 
 	private int basicObjectLength = 60;
 	// 0:left, 1:top, 2:right, 3:bottom
@@ -105,5 +108,10 @@ public class BasicObject extends CanvasObject implements Group {
 	@Override
 	public void setGroupParent(GroupObject g) {
 		this.group = g;
+	}
+	
+	@Override
+	public boolean isGroupObject() {
+		return false;
 	}
 }
