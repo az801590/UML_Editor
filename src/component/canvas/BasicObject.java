@@ -11,7 +11,9 @@ public class BasicObject extends CanvasObject implements Group {
 	public static final int USECASE = 5;
 	
 
-	private int basicObjectLength = 60;
+	private final int basicObjectWidth = 85;
+	private final int basicObjectHeight = 51;
+	
 	// 0:left, 1:top, 2:right, 3:bottom
 	private PortObject ports[] = new PortObject[4];
 	private Group group = null;
@@ -24,42 +26,33 @@ public class BasicObject extends CanvasObject implements Group {
 			add(ports[i]);
 		}
 
-		setBounds(p.x - ports[0].getPortLength(), p.y - ports[1].getPortLength(), basicObjectLength, basicObjectLength);
+		setBounds(p.x - ports[0].getPortLength(), p.y - ports[1].getPortLength(), basicObjectWidth, basicObjectHeight);
 	}
 
 	public void setGraph(int index) {
 		setPorts(index);
 
-		if (index == 4) {
+		if (index == CLASS) {
 			graph = new ClassGraph(ports[0].getPortLength(), ports[1].getPortLength(),
 					getWidth() - ports[0].getPortLength() - ports[2].getPortLength(),
 					getHeight() - ports[1].getPortLength() - ports[3].getPortLength());
-		} else if (index == 5) {
+		} else if (index == USECASE) {
 			graph = new UseGraph(ports[0].getPortLength(), ports[1].getPortLength(),
 					getWidth() - ports[0].getPortLength() - ports[2].getPortLength(),
-					getHeight() * 2 / 3 - ports[1].getPortLength() - ports[3].getPortLength());
+					getHeight() - ports[1].getPortLength() - ports[3].getPortLength());
 		}
 	}
 
 	private void setPorts(int index) {
 		ports[1].setBounds((getWidth() - ports[1].getPortLength()) / 2, 0, ports[1].getPortLength(),
 				ports[1].getPortLength());
-		if (index == 4) {
-			ports[0].setBounds(0, (getHeight() - ports[0].getPortLength()) / 2, ports[0].getPortLength(),
-					ports[0].getPortLength());
-			ports[2].setBounds(getWidth() - ports[2].getPortLength(), (getHeight() - ports[2].getPortLength()) / 2,
-					ports[2].getPortLength(), ports[2].getPortLength());
-			ports[3].setBounds((getWidth() - ports[3].getPortLength()) / 2, getHeight() - ports[3].getPortLength(),
-					ports[3].getPortLength(), ports[3].getPortLength());
-
-		} else if (index == 5) {
-			ports[0].setBounds(0, getHeight() / 3 - ports[1].getPortLength() / 2, ports[0].getPortLength(),
-					ports[0].getPortLength());
-			ports[2].setBounds(getWidth() - ports[2].getPortLength(), getHeight() / 3 - ports[1].getPortLength() / 2,
-					ports[2].getPortLength(), ports[2].getPortLength());
-			ports[3].setBounds((getWidth() - ports[1].getPortLength()) / 2,
-					getHeight() * 2 / 3 - ports[3].getPortLength(), ports[3].getPortLength(), ports[3].getPortLength());
-		}
+		
+		ports[0].setBounds(0, (getHeight() - ports[0].getPortLength()) / 2, ports[0].getPortLength(),
+				ports[0].getPortLength());
+		ports[2].setBounds(getWidth() - ports[2].getPortLength(), (getHeight() - ports[2].getPortLength()) / 2,
+				ports[2].getPortLength(), ports[2].getPortLength());
+		ports[3].setBounds((getWidth() - ports[3].getPortLength()) / 2, getHeight() - ports[3].getPortLength(),
+				ports[3].getPortLength(), ports[3].getPortLength());
 	}
 
 	public void setGraphName(String name) {

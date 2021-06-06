@@ -18,8 +18,6 @@ import mode.BasicObjMode;
 public class Sidebar extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	/**/
-	private Button selectButton;
 	private Button buttons[] = new Button[6];
 
 	private Sidebar() {
@@ -39,13 +37,22 @@ public class Sidebar extends JPanel {
 
 	private void init() {
 		GridBagConstraints gbc;
-		Graph sideGraph[] = { new SelectGraph(new int[] { 40, 40 }, new int[] { 10, 10 }),
+		Graph sideGraph[] = {
+				new SelectGraph(new int[] { 40, 40 }, new int[] { 10, 10 }),
 				new AssociationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
 				new GenerationGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
-				new CompositionGraph(new int[] { 40, 25 }, new int[] { 10, 25 }), new ClassGraph(10, 10, 30, 30),
-				new UseGraph(10, 15, 30, 20) };
-		Mode sideMode[] = { new SelectMode(), new LineMode(ConnectionObject.ASSOCIATION), new LineMode(ConnectionObject.GENERATION), new LineMode(ConnectionObject.COMPOSITION),
-				new BasicObjMode(BasicObject.CLASS), new BasicObjMode(BasicObject.USECASE) };
+				new CompositionGraph(new int[] { 40, 25 }, new int[] { 10, 25 }),
+				new ClassGraph(10, 10, 30, 30),
+				new UseGraph(10, 15, 30, 20)
+		};
+		Mode sideMode[] = { 
+				new SelectMode(),
+				new LineMode(ConnectionObject.ASSOCIATION),
+				new LineMode(ConnectionObject.GENERATION),
+				new LineMode(ConnectionObject.COMPOSITION),
+				new BasicObjMode(BasicObject.CLASS),
+				new BasicObjMode(BasicObject.USECASE)
+		};
 		ButtonAction btnAction = new ButtonAction();
 
 		for (int i = 0; i < buttons.length; i++) {
@@ -63,28 +70,4 @@ public class Sidebar extends JPanel {
 			add(buttons[i], gbc);
 		}
 	}
-
-	/**/
-	public Button getSelectButton() {
-		return selectButton;
-	}
-
-	public void setSelected(Button button) {
-		selectButton = button;
-	}
-
-	public int getSelectIndex() {
-		int i = 0;
-		if (selectButton != null) {
-			for (i = 0; i < buttons.length; i++) {
-				if (buttons[i] == selectButton) {
-					break;
-				}
-			}
-		} else {
-			i = -1;
-		}
-		return i;
-	}
-	/**/
 }

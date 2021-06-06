@@ -6,12 +6,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+//import javax.swing.border.EmptyBorder;
 
 import component.canvas.Canvas;
 import component.menubar.Menubar;
 import component.sidebar.Sidebar;
-import mode.Mode;
 
 public class UMLpanel extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,7 @@ public class UMLpanel extends JPanel {
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.gridheight = 12;
+		gbc.gridheight = 11;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.insets = new Insets(0, 20, 0, 0);
@@ -52,10 +51,11 @@ public class UMLpanel extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		gbc.gridwidth = 6;
-		gbc.gridheight = 12;
+		gbc.gridheight = 11;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		Canvas.getInstance().setPreferredSize(new Dimension(420, 420));
+		gbc.anchor = GridBagConstraints.WEST;
+		Canvas.getInstance().setPreferredSize(new Dimension(650, 420));
 		add(Canvas.getInstance(), gbc);
 	}
 }

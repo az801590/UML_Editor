@@ -1,5 +1,6 @@
 package component.graph;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class CompositionGraph extends Graph {
@@ -45,9 +46,10 @@ public class CompositionGraph extends Graph {
 
 		rect1[0] = (int) ((end[0] + lineStop[0]) / 2 - (end[1] - start[1]) / lineLength * rectLen / Math.sqrt(2));
 		rect1[1] = (int) ((end[1] + lineStop[1]) / 2 - (start[0] - end[0]) / lineLength * rectLen / Math.sqrt(2));
-
-		g.drawPolygon(new int[] { end[0], rect0[0], lineStop[0], rect1[0] },
-				new int[] { end[1], rect0[1], lineStop[1], rect1[1] }, 4);
-
+		
+		g.setColor(Color.WHITE);
+		g.fillPolygon(new int[] { end[0], rect0[0], lineStop[0], rect1[0] }, new int[] { end[1], rect0[1], lineStop[1], rect1[1] }, 4);
+		g.setColor(Color.BLACK);
+		g.drawPolygon(new int[] { end[0], rect0[0], lineStop[0], rect1[0] }, new int[] { end[1], rect0[1], lineStop[1], rect1[1] }, 4);
 	}
 }

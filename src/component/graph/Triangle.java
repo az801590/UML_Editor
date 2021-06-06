@@ -5,7 +5,7 @@ public class Triangle {
 	private int point0[] = { -1, -1 };
 	private int point1[] = new int[2];
 	private int point2[] = new int[2];
-	private double degree = 60;
+	//private double degree = 60;
 	private int diagonalPoint[] = { -1, -1 };
 
 	Triangle(int point[], int diaPoint[]) {

@@ -32,7 +32,7 @@ public class UseGraph extends Graph {
 	}
 
 	private void paintOval(Graphics g) {
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(Color.WHITE);
 		g.fillOval(x, y, width, height);
 
 		g.setColor(Color.BLACK);
@@ -40,7 +40,7 @@ public class UseGraph extends Graph {
 	}
 
 	private void paintName(Graphics g) {
-		g.drawString(name, x + width / 3, y + height * 2 / 5);
+		g.drawString(name, x + width / 8, y + height / 2 + 5);
 	}
 
 }

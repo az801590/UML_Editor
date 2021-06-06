@@ -33,18 +33,18 @@ public class ClassGraph extends Graph {
 	}
 
 	private void paintRectangle(Graphics g) {
-		g.setColor(Color.LIGHT_GRAY);
+		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
 		g.setColor(Color.BLACK);
 		g.drawRect(x, y, width, height);
 	}
 
 	private void paintLine(Graphics g) {
-		g.drawLine(x, y + height / 3, x + width, y + height / 3);
-		g.drawLine(x, y + height / 3 * 2, x + width, y + height / 3 * 2);
+		g.drawLine(x, y + height / 2, x + width, y + height / 2);
+		g.drawLine(x, y + height / 4 * 3, x + width, y + height / 4 * 3);
 	}
 
 	private void paintName(Graphics g) {
-		g.drawString(name, x + width / 4, y + height / 5);
+		g.drawString(name, x + 5, y + height / 7 * 3 - 2);
 	}
 }

@@ -1,5 +1,6 @@
 package component.graph;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class GenerationGraph extends Graph {
@@ -41,6 +42,10 @@ public class GenerationGraph extends Graph {
 		Triangle tri = new Triangle(end, lineStop);
 		int tri0[] = tri.getPoint1();
 		int tri1[] = tri.getPoint2();
+		
+		g.setColor(Color.WHITE);
+		g.fillPolygon(new int[] { end[0], tri0[0], tri1[0] }, new int[] { end[1], tri0[1], tri1[1] }, 3);
+		g.setColor(Color.BLACK);
 		g.drawPolygon(new int[] { end[0], tri0[0], tri1[0] }, new int[] { end[1], tri0[1], tri1[1] }, 3);
 	}
 
