@@ -67,11 +67,13 @@ public class ConnectionObject extends CanvasObject {
 		lineEnd[0] = toPort.getX() + to.getX() - this.getX() + toPort.getPortLength() / 2 + 1;
 		lineEnd[1] = toPort.getY() + to.getY() - this.getY() + toPort.getPortLength() / 2 + 1;
 
-		if (index == 1) {
+		if (index == ASSOCIATION) {
 			graph = new AssociationGraph(lineStart, lineEnd);
-		} else if (index == 2) {
+		} 
+		else if (index == GENERATION) {
 			graph = new GenerationGraph(lineStart, lineEnd);
-		} else if (index == 3) {
+		} 
+		else if (index == COMPOSITION) {
 			graph = new CompositionGraph(lineStart, lineEnd);
 		}
 	}

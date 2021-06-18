@@ -44,15 +44,10 @@ public class BasicObject extends CanvasObject implements Group {
 	}
 
 	private void setPorts(int index) {
-		ports[1].setBounds((getWidth() - ports[1].getPortLength()) / 2, 0, ports[1].getPortLength(),
-				ports[1].getPortLength());
-		
-		ports[0].setBounds(0, (getHeight() - ports[0].getPortLength()) / 2, ports[0].getPortLength(),
-				ports[0].getPortLength());
-		ports[2].setBounds(getWidth() - ports[2].getPortLength(), (getHeight() - ports[2].getPortLength()) / 2,
-				ports[2].getPortLength(), ports[2].getPortLength());
-		ports[3].setBounds((getWidth() - ports[3].getPortLength()) / 2, getHeight() - ports[3].getPortLength(),
-				ports[3].getPortLength(), ports[3].getPortLength());
+		ports[1].setBounds((getWidth() - ports[1].getPortLength()) / 2, 0, ports[1].getPortLength(), ports[1].getPortLength());
+		ports[0].setBounds(0, (getHeight() - ports[0].getPortLength()) / 2, ports[0].getPortLength(), ports[0].getPortLength());
+		ports[2].setBounds(getWidth() - ports[2].getPortLength(), (getHeight() - ports[2].getPortLength()) / 2, ports[2].getPortLength(), ports[2].getPortLength());
+		ports[3].setBounds((getWidth() - ports[3].getPortLength()) / 2, getHeight() - ports[3].getPortLength(), ports[3].getPortLength(), ports[3].getPortLength());
 	}
 
 	public void setGraphName(String name) {
